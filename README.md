@@ -1,73 +1,50 @@
-# React + TypeScript + Vite
+# Orlando Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern portfolio website built with **React**, **TypeScript**, **Vite**, and **Tailwind CSS**.
 
-Currently, two official plugins are available:
+## 🚀 Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Follow these steps to set up the project locally on your machine.
 
-## React Compiler
+### 1. Prerequisites
+Ensure you have the following installed:
+- **Node.js** (v18 or higher)
+- **npm**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. Installation
+Clone the repository and install the dependencies:
+```bash
+git clone <repository-url>
+cd Orlando-porfolio
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3. Development
+Start the development server with Hot Module Replacement (HMR):
+```bash
+npm run dev
 ```
+The application will be available at `http://localhost:5173`.
+
+### 4. Code Quality
+We use Prettier and ESLint to maintain code consistency. Please run these before committing:
+- **Format**: `npm run format`
+- **Lint**: `npm run lint`
+
+### 5. Production Build
+To create a production-ready bundle:
+```bash
+npm run build
+```
+The output will be in the `dist/` directory.
+
+## 📁 Project Structure
+- `src/`: Core application logic and components.
+- `public/`: Static assets (icons, etc.).
+- `tailwind.config.js`: Tailwind CSS configuration.
+- `vite.config.ts`: Vite configuration.
+
+## 💡 Contribution Guidelines
+- Ensure all new components are written in **TypeScript**.
+- Use **Tailwind CSS** for styling to maintain design consistency.
+- Always run `npm run lint` before pushing your changes.
