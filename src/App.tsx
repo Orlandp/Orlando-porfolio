@@ -3,10 +3,31 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
-import navbar from './components/navbar'
+
+import navbar from './components/navbar';
+
 
 
 function App() {
+  useEffect(() => {
+    const els = document.querySelectorAll('.reveal')
+    const obs = new IntersectionObserver(
+      (entries) => 
+        entries.forEach((e) => {
+          if (e.isIntersecting){
+            e.target.classList.add('visible')
+            obs.unobserve(e.target)
+          }
+        }),
+        { threshold: 0.11}
+    )
+    els.forEach((el) => obs.observe(el)
+    return () => obs.disconnect()
+
+
+
+  })
+ 
   const [count, setCount] = useState(0)
 
   return (
