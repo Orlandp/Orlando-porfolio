@@ -8,20 +8,20 @@ const SOCIALS = [
 ]
 
 export default function Footer() {
-  // useState: whether the back-to-top button is visible
+  
   const [showTop, setShowTop] = useState<boolean>(false)
 
-  // useEffect: show button after user scrolls past 400px
+  
   useEffect(() => {
     const fn = () => setShowTop(window.scrollY > 400)
     window.addEventListener('scroll', fn)
-    return () => window.removeEventListener('scroll', fn) // cleanup
-  }, []) // [] = run once on mount, clean up on unmount
+    return () => window.removeEventListener('scroll', fn) 
+  }, []) 
 
   return (
     <footer className="bg-black border-t border-white/5 relative">
 
-      {/* shown only when showTop state is true */}
+      
       {showTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
