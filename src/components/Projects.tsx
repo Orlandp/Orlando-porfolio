@@ -48,10 +48,10 @@ export default function Projects() {
   // useEffect: runs a side effect whenever filter changes
   useEffect(() => {
     console.log(`Projects filter changed → ${filter}`)
-    // Real-world use: fetch('/api/projects?tag=' + filter)
+    
   }, [filter]) // dependency array — re-runs when filter changes
  
-  // derived value — computed directly from state, no hook needed
+  
   const shown =
     filter === 'All' ? ALL : ALL.filter((p) => p.tags.includes(filter))
  

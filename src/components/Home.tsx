@@ -65,7 +65,7 @@ export default function Home() {
  
       <h1 className="hero-enter text-6xl md:text-8xl font-black text-white leading-none mb-5 tracking-tight">
         Hi, I'm<br />
-        <span className="text-red-500">Orlando</span>
+        <span className="text-red-500">JAMES</span>
       </h1>
  
       <p className="hero-enter max-w-lg text-gray-400 leading-relaxed text-sm md:text-base mb-10">

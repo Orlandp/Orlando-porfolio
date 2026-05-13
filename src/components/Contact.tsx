@@ -9,23 +9,23 @@ interface FormState {
 type Status = 'idle' | 'sending' | 'sent'
  
 export default function Contact() {
-  // useState: all form field values in one object
+ 
   const [form, setForm] = useState<FormState>({ name: '', email: '', message: '' })
  
-  // useState: submit lifecycle — idle → sending → sent → idle
+  
   const [status, setStatus] = useState<Status>('idle')
  
-  // useEffect: validate email format in real-time when form.email changes
+  
   useEffect(() => {
     if (!form.email) return
     const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
     const input = document.getElementById('emailField') as HTMLInputElement | null
     if (input) {
       input.style.borderColor = isValid
-        ? 'rgba(34, 197, 94, 0.5)'  // green — valid
-        : 'rgba(239, 68, 68, 0.5)'  // red — invalid
+        ? 'rgba(34, 197, 94, 0.5)'  
+        : 'rgba(239, 68, 68, 0.5)'  
     }
-  }, [form.email]) // only re-runs when email changes
+  }, [form.email]) 
  
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -80,7 +80,7 @@ export default function Contact() {
             className={`${inputCls} resize-none`}
           />
  
-          {/* button label driven by status useState */}
+         
           <button
             type="submit"
             disabled={status !== 'idle'}
