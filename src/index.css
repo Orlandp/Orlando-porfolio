@@ -69,6 +69,20 @@
   .text-neutral-400 { color: var(--muted) !important; }
   .text-neutral-500 { color: var(--muted-foreground) !important; }
   
+  /* Fallbacks for cached Tailwind transparency modifiers */
+  .bg-primary\/5 { background-color: rgba(139, 92, 246, 0.05) !important; }
+  .bg-primary\/10 { background-color: rgba(139, 92, 246, 0.1) !important; }
+  .bg-primary\/20 { background-color: rgba(139, 92, 246, 0.2) !important; }
+  .bg-primary\/30 { background-color: rgba(139, 92, 246, 0.3) !important; }
+  .bg-primary\/90 { background-color: rgba(139, 92, 246, 0.9) !important; }
+  .bg-accent\/20 { background-color: rgba(192, 132, 252, 0.2) !important; }
+  .border-primary\/20 { border-color: rgba(139, 92, 246, 0.2) !important; }
+  .border-primary\/50 { border-color: rgba(139, 92, 246, 0.5) !important; }
+  
+  /* Use glass vars for foreground opacities to automatically invert between light/dark mode */
+  .bg-foreground\/5 { background-color: var(--glass-bg) !important; }
+  .bg-foreground\/10 { background-color: var(--glass-bg-hover) !important; }
+  
   .bg-white\/5 { background-color: var(--glass-bg) !important; }
   .bg-white\/10 { background-color: var(--glass-bg-hover) !important; }
   .border-white\/8 { border-color: var(--glass-border) !important; }
@@ -89,6 +103,7 @@
   }
   
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+    background-image: linear-gradient(to right, var(--primary), var(--accent)) !important;
+    @apply bg-clip-text text-transparent;
   }
 }
