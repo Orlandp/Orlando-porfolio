@@ -1,100 +1,100 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowDown, Code2 } from 'lucide-react';
 
-const ROLES = ['Frontend Developer', 'React specialist', 'Typescript developer']
+const ROLES = ['Frontend Developer', 'React Specialist', 'TypeScript Expert', 'UI/UX Enthusiast'];
 
 export default function Home() {
-    const [roleIndex, setRolexIndex] = useState<number>(0)
+  const [roleIndex, setRoleIndex] = useState(0);
 
-    const [visible, setVisible] = useState<boolean>(true)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRoleIndex((i) => (i + 1) % ROLES.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
-    useEffect(() =>  {
-        const id = setInterval(() => {
-            setVisible(false)
-            setTimeout(() => {
-                setRolexIndex((i) => (i + 1) % ROLES.length)
-                setVisible(true)
+  const scrollTo = (id: string) => {
+    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
 
-            }, 500)
+  return (
+    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+      {/* Background blobs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob" />
+      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-accent/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob" style={{ animationDelay: '2s' }} />
+      <div className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-secondary/30 rounded-full mix-blend-screen filter blur-[100px] animate-blob" style={{ animationDelay: '4s' }} />
 
-        }, 2500)
-        return () => clearInterval(id)
-    }, [])
-
-    const scrollTo =(id: string) => 
-        document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
-
-    return(
-        <section id="home" 
-        className= "relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden bg-black">
-            <div
-             className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),' +
-            'linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)',
-          backgroundSize: '56px 56px',
-        }}
-            />
-            <div 
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle,rgba(224,48,48,0.12) 0%,transparent 70%)' }}
-      
-            />
-              <div className="hero-enter relative mb-8">
-        <div
-          className="w-28 h-28 rounded-full p-0.5 mx-auto"
-          style={{ background: 'linear-gradient(135deg,#e03030,#ff6b6b,#7f1d1d)' }}
-        >
-          <div className="w-full h-full rounded-full overflow-hidden bg-zinc-900 flex items-center justify-center">
-            {/*
-              When hero.png is in src/assets/, replace this span with:
-              <img src={heroImg} alt="Orlando" className="w-full h-full object-cover" />
-            */}
-            <span className="text-3xl font-black text-red-500">O</span>
-          </div>
-        </div>
-         <span className="absolute bottom-1 right-1 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-black" />
-      </div>
- 
-      <p
-        className="hero-enter text-xs font-semibold tracking-[0.3em] uppercase text-red-500 mb-3"
-        style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.4s ease' }}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="z-10 flex flex-col items-center"
       >
-        {ROLES[roleIndex]}
-      </p>
- 
-      <h1 className="hero-enter text-6xl md:text-8xl font-black text-white leading-none mb-5 tracking-tight">
-        Hi, I'm<br />
-        <span className="text-red-500">JAMES</span>
-      </h1>
- 
-      <p className="hero-enter max-w-lg text-gray-400 leading-relaxed text-sm md:text-base mb-10">
-        Building fast, accessible, and visually sharp web interfaces using
-        React, TypeScript, and Tailwind CSS.
-      </p>
- 
-      <div className="hero-enter flex flex-wrap gap-4 justify-center">
-        <button
-          onClick={() => scrollTo('#projects')}
-          className="px-7 py-3 bg-red-600 hover:bg-red-500 text-white text-xs font-bold uppercase tracking-widest rounded-md transition-all hover:-translate-y-0.5"
+        <motion.div 
+          className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/10"
+          whileHover={{ scale: 1.05 }}
         >
-          View Work
-        </button>
-        <button
-          onClick={() => scrollTo('#contact')}
-          className="px-7 py-3 border border-white/20 hover:border-white/50 text-gray-400 hover:text-white text-xs font-bold uppercase tracking-widest rounded-md transition-all hover:-translate-y-0.5"
-        >
-          Contact Me
-        </button>
-      </div>
- 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-        <span className="text-xs text-gray-700 uppercase tracking-widest">Scroll</span>
-        <svg className="w-4 h-4 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <polyline points="6 9 12 15 18 9" />
-        </svg>
-        </div>
-        </section>   
-     )
+          <Code2 size={16} className="text-primary" />
+          <span className="text-sm font-medium">Hello, World!</span>
+        </motion.div>
 
+        <h1 className="text-6xl md:text-8xl font-black text-foreground leading-tight mb-6">
+          I'm <span className="text-gradient">James</span><br />
+          <span className="text-4xl md:text-6xl text-neutral-400 font-display">Building Digital Experiences</span>
+        </h1>
+
+        <div className="h-8 mb-8 overflow-hidden relative">
+          <motion.div
+            key={roleIndex}
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -30, opacity: 0 }}
+            transition={{ duration: 0.5, type: 'spring' }}
+            className="text-lg md:text-xl font-medium text-neutral-300"
+          >
+            {ROLES[roleIndex]}
+          </motion.div>
+        </div>
+
+        <p className="max-w-xl text-neutral-400 leading-relaxed text-base md:text-lg mb-10">
+          Crafting fast, accessible, and visually stunning web interfaces using
+          React, TypeScript, Framer Motion, and Tailwind CSS.
+        </p>
+
+        <div className="flex flex-wrap gap-4 justify-center">
+          <button
+            onClick={() => scrollTo('#projects')}
+            className="px-8 py-3 bg-foreground text-background hover:bg-neutral-200 font-semibold rounded-full transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+          >
+            View Work
+          </button>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="px-8 py-3 glass hover:bg-white/10 text-foreground font-semibold rounded-full transition-all border border-white/10 flex items-center gap-2"
+          >
+            Resume
+          </a>
+          <button
+            onClick={() => scrollTo('#contact')}
+            className="px-8 py-3 glass hover:bg-white/10 text-foreground font-semibold rounded-full transition-all border border-white/10"
+          >
+            Contact Me
+          </button>
+        </div>
+      </motion.div>
+
+      <motion.div 
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer z-10"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        onClick={() => scrollTo('#about')}
+      >
+        <span className="text-xs text-neutral-500 uppercase tracking-widest font-medium">Scroll down</span>
+        <ArrowDown size={20} className="text-neutral-500" />
+      </motion.div>
+    </section>
+  );
 }

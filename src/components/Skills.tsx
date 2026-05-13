@@ -1,102 +1,121 @@
-import { useState, useEffect, useRef } from 'react'
+import { motion } from 'framer-motion';
+import { Layout, Palette, Code2, Database } from 'lucide-react';
 
-interface Skill { 
-    name: string
-    level: number
-}
-
-const SKILLS: Skill[] = [
-    { name: 'HTML $ CSS', level: 75 },
-    { name: 'Javascript', level: 75 },
-    { name: 'React', level: 75 },
-    { name:  'Tailwind Css', level: 75 },
-]
+const SKILL_CATEGORIES = [
+  {
+    title: 'Frontend Frameworks',
+    icon: Layout,
+    skills: [
+      { name: 'React', level: 90 },
+      { name: 'Next.js', level: 80 },
+      { name: 'Vue.js', level: 60 },
+    ],
+  },
+  {
+    title: 'Styling & UI',
+    icon: Palette,
+    skills: [
+      { name: 'Tailwind CSS', level: 95 },
+      { name: 'Framer Motion', level: 85 },
+      { name: 'SASS', level: 80 },
+    ],
+  },
+  {
+    title: 'Languages',
+    icon: Code2,
+    skills: [
+      { name: 'TypeScript', level: 85 },
+      { name: 'JavaScript', level: 95 },
+      { name: 'HTML/CSS', level: 95 },
+    ],
+  },
+  {
+    title: 'Backend & Tools',
+    icon: Database,
+    skills: [
+      { name: 'Node.js', level: 70 },
+      { name: 'Git', level: 85 },
+      { name: 'Vite', level: 90 },
+    ],
+  },
+];
 
 export default function Skills() {
-    const ref = useRef<HTMLElement>(null)
-
-    const [hovered, setHovered] = useState<string | null>(null)
-
-     useEffect(() => {
-    const fills = ref.current?.querySelectorAll<HTMLElement>('[data-fill]')
-    if (!fills) return
- 
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          fills.forEach((el) => el.classList.add('skill-animate'))
-          obs.disconnect()
-        }
-      },
-      { threshold: 0.2 }
-    )
-    if (ref.current) obs.observe(ref.current)
-    return () => obs.disconnect()
-  }, [])
- 
   return (
-    <section id="skills" ref={ref} className="py-28 px-6 bg-zinc-950">
-      <div className="max-w-5xl mx-auto">
-        <p className="reveal text-xs font-semibold uppercase tracking-[0.3em] text-red-500 mb-3">
-          Technical Skills
-        </p>
-        <h2 className="reveal text-4xl md:text-5xl font-black text-white leading-tight mb-3">
-          What I work with
-        </h2>
-        <p className="reveal text-sm text-gray-500 max-w-md mb-12">
-          Proficiency based on real project experience — not just tutorials.
-        </p>
- 
-        <div className="reveal flex items-center gap-2 mb-8">
-          <span className="w-2 h-2 rounded-full bg-red-500" />
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
-            Frontend
-          </span>
+    <section id="skills" className="py-28 px-6 relative overflow-hidden">
+      <div className="max-w-5xl mx-auto relative z-10">
+        <div className="text-center mb-16">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-xs font-semibold uppercase tracking-[0.3em] text-accent mb-3"
+          >
+            Technical Proficiency
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl font-black text-foreground mb-4"
+          >
+            What I work with
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-neutral-400 max-w-xl mx-auto"
+          >
+            A curated stack of modern technologies I use to build scalable, accessible, and performant web applications.
+          </motion.p>
         </div>
- 
-        <ul className="reveal grid sm:grid-cols-2 gap-x-16 gap-y-6 max-w-2xl">
-          {SKILLS.map((skill) => (
-            <li
-              key={skill.name}
-              onMouseEnter={() => setHovered(skill.name)}
-              onMouseLeave={() => setHovered(null)}
-            >
-              <div className="flex justify-between mb-1.5">
-                {/* colour driven by useState hovered */}
-                <span
-                  className={`text-sm transition-colors ${
-                    hovered === skill.name ? 'text-white font-medium' : 'text-gray-400'
-                  }`}
-                >
-                  {skill.name}
-                </span>
-                <span
-                  className={`text-xs transition-colors ${
-                    hovered === skill.name ? 'text-red-400' : 'text-gray-600'
-                  }`}
-                >
-                  {skill.level}%
-                </span>
-              </div>
-              <div className="h-[2px] bg-white/5 rounded-full overflow-hidden">
-                {/* useEffect adds skill-animate class on scroll */}
-                <div
-                  data-fill
-                  className="h-full rounded-full bg-red-500"
-                  style={{ width: `${skill.level}%` }}
-                />
-              </div>
-            </li>
-          ))}
-        </ul>
- 
-        {/* tooltip — only shows when hovered is not null */}
-        {hovered && (
-          <p className="mt-8 text-xs text-gray-500">
-            Hovering: <span className="text-red-400 font-medium">{hovered}</span>
-          </p>
-        )}
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {SKILL_CATEGORIES.map((category, idx) => {
+            const Icon = category.icon;
+            return (
+              <motion.div
+                key={category.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: 0.1 * idx }}
+                className="glass-card p-8 group hover:border-white/20"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 bg-white/5 rounded-xl text-neutral-400 group-hover:text-accent transition-colors">
+                    <Icon size={24} />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground">{category.title}</h3>
+                </div>
+
+                <ul className="space-y-4">
+                  {category.skills.map((skill, sIdx) => (
+                    <li key={skill.name}>
+                      <div className="flex justify-between mb-2">
+                        <span className="text-sm font-medium text-neutral-300">{skill.name}</span>
+                        <span className="text-xs text-neutral-500">{skill.level}%</span>
+                      </div>
+                      <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${skill.level}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, delay: 0.2 + (sIdx * 0.1), ease: "easeOut" }}
+                          className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
+                        />
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
-  )
+  );
 }
