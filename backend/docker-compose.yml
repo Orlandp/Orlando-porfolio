@@ -1,0 +1,10 @@
+services:
+  mailer:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8090:8090"
+    environment:
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      CONTACT_ALLOWED_ORIGINS: ${CONTACT_ALLOWED_ORIGINS}
