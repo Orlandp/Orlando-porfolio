@@ -11,31 +11,26 @@ interface Project {
  
 const ALL: Project[] = [
   {
-    title:       'Portfolio Site',
-    description: 'React + TypeScript + Vite + Tailwind. Smooth scroll, active nav, typed component architecture.',
-    tags:        ['React', 'TypeScript', 'Vite', 'Tailwind'],
-    liveUrl:     '#',
-    repoUrl:     'https://github.com',
+    title:       'Rental-ACE',
+    description: 'Property management platform for landlords, agents, and tenants — units, rent, invoices, M-Pesa payments with emailed receipts, and branded PDF agreements.',
+    tags:        ['React', 'Flask', 'PostgreSQL', 'Docker', 'M-Pesa'],
+    liveUrl:     'https://acerental.olando.co.ke',
+    repoUrl:     'https://github.com/Orlandp/Rental-ACE',
     featured:    true,
   },
   {
-    title:       'React Dashboard',
-    description: 'Admin dashboard with data charts, filterable tables, dark mode, and responsive layout.',
-    tags:        ['React', 'TypeScript', 'Recharts', 'Tailwind'],
-    liveUrl:     '#',
-    repoUrl:     'https://github.com',
+    title:       'Awelando Cars (car-rental-platform)',
+    description: 'Full-stack car rental booking platform with an admin dashboard for fleet and reservation management, backed by a Flask API and PostgreSQL.',
+    tags:        ['React', 'Flask', 'PostgreSQL', 'Docker'],
+    liveUrl:     'https://carrental.olando.co.ke',
+    repoUrl:     'https://github.com/Orlandp/car-rental-platform',
+    featured:    true,
   },
   {
-    title:       'UI Component Library',
-    description: '20+ typed React components — buttons, inputs, modals, toasts — with Storybook docs.',
-    tags:        ['React', 'TypeScript', 'Storybook', 'Tailwind'],
-    repoUrl:     'https://github.com',
-  },
-  {
-    title:       'Landing Page Kit',
-    description: 'Responsive landing page sections built with Tailwind CSS — hero, features, pricing, footer.',
-    tags:        ['HTML', 'CSS', 'Tailwind', 'JavaScript'],
-    repoUrl:     'https://github.com',
+    title:       'Portfolio Site',
+    description: 'React + TypeScript + Vite + Tailwind. Smooth scroll, active nav, typed component architecture.',
+    tags:        ['React', 'TypeScript', 'Vite', 'Tailwind'],
+    repoUrl:     'https://github.com/Orlandp/Orlando-porfolio',
   },
 ]
  
