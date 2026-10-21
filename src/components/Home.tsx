@@ -86,6 +86,13 @@ export default function Home() {
         >
           Contact Me
         </button>
+        <a
+          href="/James_Blessing_CV.docx"
+          download
+          className="px-7 py-3 border border-white/20 hover:border-white/50 text-gray-400 hover:text-white text-xs font-bold uppercase tracking-widest rounded-md transition-all hover:-translate-y-0.5"
+        >
+          Download CV
+        </a>
       </div>
  
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
