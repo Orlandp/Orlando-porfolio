@@ -6,7 +6,7 @@ interface FormState {
   message: string
 }
  
-type Status = 'idle' | 'sending' | 'sent'
+type Status = 'idle' | 'sending' | 'sent' | 'error'
  
 export default function Contact() {
  
@@ -34,11 +34,20 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('sending')
-    
-    await new Promise((r) => setTimeout(r, 1200))
-    setStatus('sent')
-    setForm({ name: '', email: '', message: '' })
-    setTimeout(() => setStatus('idle'), 3000)
+
+    try {
+      const res = await fetch('/api/contact', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error(`Mailer responded ${res.status}`)
+      setStatus('sent')
+      setForm({ name: '', email: '', message: '' })
+    } catch {
+      setStatus('error')
+    }
+    setTimeout(() => setStatus('idle'), 4000)
   }
  
   const inputCls =
@@ -104,7 +113,18 @@ export default function Contact() {
             {status === 'idle'    && 'Send Message'}
             {status === 'sending' && 'Sending…'}
             {status === 'sent'    && '✓ Message Sent!'}
+            {status === 'error'   && 'Failed — try again'}
           </button>
+
+          {status === 'error' && (
+            <p className="text-xs text-red-400">
+              Something went wrong sending that. You can also reach me directly at{' '}
+              <a href="mailto:jamesblssings@gmail.com" className="underline">
+                jamesblssings@gmail.com
+              </a>
+              .
+            </p>
+          )}
         </form>
       </div>
     </section>
