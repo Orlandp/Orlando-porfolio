@@ -38,9 +38,27 @@ npm run build
 ```
 The output will be in the `dist/` directory.
 
+## ✉️ Contact form backend
+
+The contact form posts to a Spring Boot service in `backend/` that relays
+messages to `jamesblssings@gmail.com` over Gmail SMTP.
+
+It reads `MAIL_USERNAME` and `MAIL_PASSWORD` (a Google **app password**, not the
+account password) from `backend/.env`, which is gitignored — the app will not
+start without them. Create one at <https://myaccount.google.com/apppasswords>:
+
+```bash
+cd backend
+printf 'MAIL_USERNAME=jamesblssings@gmail.com\nMAIL_PASSWORD=<app-password>\n' > .env
+./run.sh        # serves on http://localhost:8090
+```
+
+Run it alongside `npm run dev` — Vite proxies `/api` to port 8090.
+
 ## 📁 Project Structure
 - `src/`: Core application logic and components.
-- `public/`: Static assets (icons, etc.).
+- `public/`: Static assets (icons, CV, etc.).
+- `backend/`: Spring Boot mail service for the contact form.
 - `tailwind.config.js`: Tailwind CSS configuration.
 - `vite.config.ts`: Vite configuration.
 
