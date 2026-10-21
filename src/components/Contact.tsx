@@ -55,10 +55,25 @@ export default function Contact() {
         <h2 className="reveal text-4xl md:text-5xl font-black text-white leading-tight mb-3">
           Let's work together
         </h2>
-        <p className="reveal text-sm text-gray-500 max-w-md mb-16">
+        <p className="reveal text-sm text-gray-500 max-w-md mb-6">
           Have a project in mind? My inbox is always open.
         </p>
- 
+
+        <div className="reveal flex flex-wrap gap-6 mb-10">
+          <a
+            href="mailto:jamesblssings@gmail.com"
+            className="text-sm text-gray-400 hover:text-red-400 transition-colors"
+          >
+            jamesblssings@gmail.com
+          </a>
+          <a
+            href="tel:+254713146845"
+            className="text-sm text-gray-400 hover:text-red-400 transition-colors"
+          >
+            0713 146 845
+          </a>
+        </div>
+
         <form onSubmit={handleSubmit} className="reveal flex flex-col gap-3 max-w-lg">
           <input
             name="name" type="text" placeholder="Your name"
