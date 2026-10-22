@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import profilePhoto from '../assets/profile.jpg'
 
 const ROLES = ['Frontend Developer', 'React specialist', 'Typescript developer']
 
@@ -38,11 +39,7 @@ export default function Home() {
           style={{ background: 'linear-gradient(135deg,#e03030,#ff6b6b,#7f1d1d)' }}
         >
           <div className="w-full h-full rounded-full overflow-hidden bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center">
-            {/*
-              When hero.png is in src/assets/, replace this span with:
-              <img src={heroImg} alt="Orlando" className="w-full h-full object-cover" />
-            */}
-            <span className="text-3xl font-black text-red-500">O</span>
+            <img src={profilePhoto} alt="James" className="w-full h-full object-cover" />
           </div>
         </div>
          <span className="absolute bottom-1 right-1 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white dark:border-black" />
