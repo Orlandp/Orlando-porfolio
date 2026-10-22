@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import profilePhoto from '../assets/profile.jpg'
 
-const ROLES = ['Frontend Developer', 'React specialist', 'Typescript developer']
+const ROLES = ['Full-Stack Developer', 'React & Flask Developer', 'REST API Specialist']
 
 export default function Home() {
     const [roleIndex, setRolexIndex] = useState<number>(0)
@@ -57,8 +57,8 @@ export default function Home() {
       </h1>
 
       <p className="hero-enter max-w-lg text-gray-600 dark:text-gray-400 leading-relaxed text-sm md:text-base mb-10">
-        Building fast, accessible, and visually sharp web interfaces using
-        React, TypeScript, and Tailwind CSS.
+        Building fast, accessible interfaces with React and TypeScript, backed
+        by REST APIs built with Python, Flask, and PostgreSQL.
       </p>
 
       <div className="hero-enter flex flex-wrap gap-4 justify-center">

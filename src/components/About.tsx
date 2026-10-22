@@ -9,11 +9,14 @@ interface Stat {
 const STATS: Stat[] = [
   { label: 'Years coding',      target: 2,   suffix: '+' },
   { label: 'Projects shipped',  target: 10,  suffix: '+' },
-  { label: 'Technologies',      target: 8,   suffix: '+' },
+  { label: 'Technologies',      target: 12,  suffix: '+' },
   { label: 'Passion for craft', target: 100, suffix: '%' },
 ]
 
-const BADGES = ['React', 'TypeScript', 'JavaScript', 'Vite', 'Tailwind CSS', 'HTML', 'CSS', 'Figma']
+const BADGES = [
+  'React', 'TypeScript', 'JavaScript', 'Vite', 'Tailwind CSS', 'HTML', 'CSS',
+  'Python', 'Flask', 'REST APIs', 'PostgreSQL', 'Docker', 'Figma',
+]
 
 export default function About() {
   const ref = useRef<HTMLElement>(null)
@@ -64,14 +67,18 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <div className="reveal space-y-5 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
             <p>
-              I'm a self-taught frontend developer with a sharp eye for design
+              I'm a self-taught full-stack developer with a sharp eye for design
               and a deep respect for clean code.
             </p>
             <p>
               My stack revolves around{' '}
-              <span className="text-gray-900 dark:text-white font-medium">React</span>,{' '}
-              <span className="text-gray-900 dark:text-white font-medium">TypeScript</span>, and{' '}
-              <span className="text-gray-900 dark:text-white font-medium">Tailwind CSS</span>.
+              <span className="text-gray-900 dark:text-white font-medium">React</span> and{' '}
+              <span className="text-gray-900 dark:text-white font-medium">TypeScript</span> on the frontend,
+              with{' '}
+              <span className="text-gray-900 dark:text-white font-medium">Python</span>,{' '}
+              <span className="text-gray-900 dark:text-white font-medium">Flask</span>, and{' '}
+              <span className="text-gray-900 dark:text-white font-medium">PostgreSQL</span> powering REST
+              APIs on the backend.
             </p>
             <p>
               When I'm not coding, I'm studying new frameworks or sketching

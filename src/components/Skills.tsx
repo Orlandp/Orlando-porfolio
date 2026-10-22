@@ -5,11 +5,31 @@ interface Skill {
     level: number
 }
 
-const SKILLS: Skill[] = [
-    { name: 'HTML $ CSS', level: 75 },
-    { name: 'Javascript', level: 75 },
-    { name: 'React', level: 75 },
-    { name:  'Tailwind Css', level: 75 },
+interface SkillGroup {
+    category: string
+    skills:   Skill[]
+}
+
+const GROUPS: SkillGroup[] = [
+    {
+        category: 'Frontend',
+        skills: [
+            { name: 'HTML & CSS',    level: 75 },
+            { name: 'JavaScript',    level: 75 },
+            { name: 'React',        level: 75 },
+            { name: 'Tailwind CSS', level: 75 },
+        ],
+    },
+    {
+        category: 'Backend',
+        skills: [
+            { name: 'Python',       level: 75 },
+            { name: 'Flask',        level: 75 },
+            { name: 'REST APIs',    level: 75 },
+            { name: 'PostgreSQL',   level: 70 },
+            { name: 'Docker',       level: 70 },
+        ],
+    },
 ]
 
 export default function Skills() {
@@ -46,47 +66,49 @@ export default function Skills() {
           Proficiency based on real project experience — not just tutorials.
         </p>
 
-        <div className="reveal flex items-center gap-2 mb-8">
-          <span className="w-2 h-2 rounded-full bg-red-500" />
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
-            Frontend
-          </span>
-        </div>
+        {GROUPS.map((group, gi) => (
+          <div key={group.category} className={gi > 0 ? 'mt-12' : ''}>
+            <div className="reveal flex items-center gap-2 mb-8">
+              <span className="w-2 h-2 rounded-full bg-red-500" />
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
+                {group.category}
+              </span>
+            </div>
 
-        <ul className="reveal grid sm:grid-cols-2 gap-x-16 gap-y-6 max-w-2xl">
-          {SKILLS.map((skill) => (
-            <li
-              key={skill.name}
-              onMouseEnter={() => setHovered(skill.name)}
-              onMouseLeave={() => setHovered(null)}
-            >
-              <div className="flex justify-between mb-1.5">
-                {/* colour driven by useState hovered */}
-                <span
-                  className={`text-sm transition-colors ${
-                    hovered === skill.name ? 'text-gray-900 dark:text-white font-medium' : 'text-gray-600 dark:text-gray-400'
-                  }`}
+            <ul className="reveal grid sm:grid-cols-2 gap-x-16 gap-y-6 max-w-2xl">
+              {group.skills.map((skill) => (
+                <li
+                  key={skill.name}
+                  onMouseEnter={() => setHovered(skill.name)}
+                  onMouseLeave={() => setHovered(null)}
                 >
-                  {skill.name}
-                </span>
-                <span
-                  className={`text-xs transition-colors ${
-                    hovered === skill.name ? 'text-red-500 dark:text-red-400' : 'text-gray-500 dark:text-gray-600'
-                  }`}
-                >
-                  {skill.level}%
-                </span>
-              </div>
-              <div className="h-[2px] bg-black/5 dark:bg-white/5 rounded-full overflow-hidden">
-                {/* starts at 0 width, animates to its level once this section scrolls into view */}
-                <div
-                  className="h-full rounded-full bg-red-500 transition-[width] duration-1000 ease-out"
-                  style={{ width: revealed ? `${skill.level}%` : '0%' }}
-                />
-              </div>
-            </li>
-          ))}
-        </ul>
+                  <div className="flex justify-between mb-1.5">
+                    <span
+                      className={`text-sm transition-colors ${
+                        hovered === skill.name ? 'text-gray-900 dark:text-white font-medium' : 'text-gray-600 dark:text-gray-400'
+                      }`}
+                    >
+                      {skill.name}
+                    </span>
+                    <span
+                      className={`text-xs transition-colors ${
+                        hovered === skill.name ? 'text-red-500 dark:text-red-400' : 'text-gray-500 dark:text-gray-600'
+                      }`}
+                    >
+                      {skill.level}%
+                    </span>
+                  </div>
+                  <div className="h-[2px] bg-black/5 dark:bg-white/5 rounded-full overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-red-500 transition-[width] duration-1000 ease-out"
+                      style={{ width: revealed ? `${skill.level}%` : '0%' }}
+                    />
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
 
         {/* tooltip — only shows when hovered is not null */}
         {hovered && (
