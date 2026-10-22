@@ -1,4 +1,5 @@
 import { useState, useEffect} from "react";
+import ThemeToggle from "./ThemeToggle";
 
 interface NavLinks {
     label: string;
@@ -21,13 +22,13 @@ export default function Navbar() {
 
     useEffect(() => {
         const obs= new IntersectionObserver(
-            (entries) => 
+            (entries) =>
                 entries.forEach((e) => {
                     if (e.isIntersecting) setActive(e.target.id)
                 }),
             { threshold: 0.5 }
         )
-        
+
         NAV_LINKS.forEach(({ href }) => {
             const el = document.querySelector(href)
             if (el) obs.observe(el)
@@ -40,7 +41,7 @@ export default function Navbar() {
     useEffect(() => {
         const fn = () => setScrolled(window.scrollY > 24)
         window.addEventListener("scroll", fn)
-        return () => window.removeEventListener("scroll", fn) 
+        return () => window.removeEventListener("scroll", fn)
         } ,[])
 
     const scrollTo = (href: string) => {
@@ -53,56 +54,62 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-black/90 backdrop-blur-md shadow-lg shadow-black/60'
+          ? 'bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-lg shadow-black/10 dark:shadow-black/60'
           : 'bg-transparent'
       }`}
     >
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         <button
           onClick={() => scrollTo('#home')}
-          className="font-black text-xl tracking-widest uppercase text-white hover:text-red-400 transition-colors"
+          className="font-black text-xl tracking-widest uppercase text-gray-900 dark:text-white hover:text-red-500 dark:hover:text-red-400 transition-colors"
         >
           Orlando<span className="text-red-500">.</span>
         </button>
- 
-        <ul className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map(({ label, href }) => {
-            const id = href.replace('#', '')
-            return (
-              <li key={href}>
-                <button
-                  onClick={() => scrollTo(href)}
-                  className={`text-xs font-semibold uppercase tracking-widest pb-0.5 border-b-2 transition-colors ${
-                    active === id
-                      ? 'text-white border-red-500'
-                      : 'text-gray-500 border-transparent hover:text-gray-200'
-                  }`}
-                >
-                  {label}
-                </button>
-              </li>
-            )
-          })}
-        </ul>
- 
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-1"
-          onClick={() => setMenuOpen((p) => !p)}
-          aria-label="Toggle menu"
-        >
-          <span className={`block w-6 h-0.5 bg-gray-400 transition-all duration-300 origin-center ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`block w-6 h-0.5 bg-gray-400 transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
-          <span className={`block w-6 h-0.5 bg-gray-400 transition-all duration-300 origin-center ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-        </button>
+
+        <div className="hidden md:flex items-center gap-8">
+          <ul className="flex items-center gap-8">
+            {NAV_LINKS.map(({ label, href }) => {
+              const id = href.replace('#', '')
+              return (
+                <li key={href}>
+                  <button
+                    onClick={() => scrollTo(href)}
+                    className={`text-xs font-semibold uppercase tracking-widest pb-0.5 border-b-2 transition-colors ${
+                      active === id
+                        ? 'text-gray-900 dark:text-white border-red-500'
+                        : 'text-gray-500 border-transparent hover:text-gray-900 dark:hover:text-gray-200'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+          <ThemeToggle />
+        </div>
+
+        <div className="md:hidden flex items-center gap-3">
+          <ThemeToggle />
+          <button
+            className="flex flex-col gap-1.5 p-1"
+            onClick={() => setMenuOpen((p) => !p)}
+            aria-label="Toggle menu"
+          >
+            <span className={`block w-6 h-0.5 bg-gray-400 transition-all duration-300 origin-center ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`block w-6 h-0.5 bg-gray-400 transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+            <span className={`block w-6 h-0.5 bg-gray-400 transition-all duration-300 origin-center ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          </button>
+        </div>
       </div>
- 
+
       <div className={`md:hidden overflow-hidden transition-all duration-300 ${menuOpen ? 'max-h-72' : 'max-h-0'}`}>
-        <ul className="bg-black/95 border-t border-white/5 px-6 py-5 flex flex-col gap-5">
+        <ul className="bg-white/95 dark:bg-black/95 border-t border-black/5 dark:border-white/5 px-6 py-5 flex flex-col gap-5">
           {NAV_LINKS.map(({ label, href }) => (
             <li key={href}>
               <button
                 onClick={() => scrollTo(href)}
-                className="text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-red-400 transition-colors"
+                className="text-xs font-semibold uppercase tracking-widest text-gray-600 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors"
               >
                 {label}
               </button>
@@ -113,6 +120,6 @@ export default function Navbar() {
     </nav>
   )
 
-    
+
 
 }

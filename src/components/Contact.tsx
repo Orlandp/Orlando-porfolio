@@ -1,36 +1,36 @@
 import { useState, useEffect } from 'react'
- 
+
 interface FormState {
   name:    string
   email:   string
   message: string
 }
- 
+
 type Status = 'idle' | 'sending' | 'sent' | 'error'
- 
+
 export default function Contact() {
- 
+
   const [form, setForm] = useState<FormState>({ name: '', email: '', message: '' })
- 
-  
+
+
   const [status, setStatus] = useState<Status>('idle')
- 
-  
+
+
   useEffect(() => {
     if (!form.email) return
     const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
     const input = document.getElementById('emailField') as HTMLInputElement | null
     if (input) {
       input.style.borderColor = isValid
-        ? 'rgba(34, 197, 94, 0.5)'  
-        : 'rgba(239, 68, 68, 0.5)'  
+        ? 'rgba(34, 197, 94, 0.5)'
+        : 'rgba(239, 68, 68, 0.5)'
     }
-  }, [form.email]) 
- 
+  }, [form.email])
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
- 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('sending')
@@ -50,19 +50,19 @@ export default function Contact() {
     }
     setTimeout(() => setStatus('idle'), 4000)
   }
- 
+
   const inputCls =
-    'w-full bg-white/[0.04] border border-white/10 text-white ' +
-    'placeholder-gray-600 rounded-lg px-4 py-3 text-sm outline-none ' +
+    'w-full bg-black/[0.04] dark:bg-white/[0.04] border border-black/10 dark:border-white/10 text-gray-900 dark:text-white ' +
+    'placeholder-gray-500 dark:placeholder-gray-600 rounded-lg px-4 py-3 text-sm outline-none ' +
     'focus:border-red-500/50 transition-all'
- 
+
   return (
-    <section id="contact" className="py-28 px-6 bg-zinc-950">
+    <section id="contact" className="py-28 px-6 bg-gray-50 dark:bg-zinc-950 transition-colors duration-300">
       <div className="max-w-4xl mx-auto">
         <p className="reveal text-xs font-semibold uppercase tracking-[0.3em] text-red-500 mb-3">
           Contact
         </p>
-        <h2 className="reveal text-4xl md:text-5xl font-black text-white leading-tight mb-3">
+        <h2 className="reveal text-3xl md:text-4xl font-black text-gray-900 dark:text-white leading-tight mb-3">
           Let's work together
         </h2>
         <p className="reveal text-sm text-gray-500 max-w-md mb-6">
@@ -72,13 +72,13 @@ export default function Contact() {
         <div className="reveal flex flex-wrap gap-6 mb-10">
           <a
             href="mailto:jamesblssings@gmail.com"
-            className="text-sm text-gray-400 hover:text-red-400 transition-colors"
+            className="text-sm text-gray-600 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors"
           >
             jamesblssings@gmail.com
           </a>
           <a
             href="tel:+254713146845"
-            className="text-sm text-gray-400 hover:text-red-400 transition-colors"
+            className="text-sm text-gray-600 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors"
           >
             0713 146 845
           </a>
@@ -90,7 +90,7 @@ export default function Contact() {
             required value={form.name} onChange={handleChange}
             className={inputCls}
           />
- 
+
           {/* border colour changes via useEffect validation */}
           <input
             id="emailField"
@@ -98,14 +98,14 @@ export default function Contact() {
             required value={form.email} onChange={handleChange}
             className={inputCls}
           />
- 
+
           <textarea
             name="message" rows={5} placeholder="Tell me about your project…"
             required value={form.message} onChange={handleChange}
             className={`${inputCls} resize-none`}
           />
- 
-         
+
+
           <button
             type="submit"
             disabled={status !== 'idle'}
@@ -118,7 +118,7 @@ export default function Contact() {
           </button>
 
           {status === 'error' && (
-            <p className="text-xs text-red-400">
+            <p className="text-xs text-red-500 dark:text-red-400">
               Something went wrong sending that. You can also reach me directly at{' '}
               <a href="mailto:jamesblssings@gmail.com" className="underline">
                 jamesblssings@gmail.com
@@ -131,4 +131,3 @@ export default function Contact() {
     </section>
   )
 }
- 

@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
-import './App.css'
- 
+
 import Navbar   from './components/Navbar'
 import Home     from './components/Home'
 import About    from './components/About'
@@ -8,7 +7,7 @@ import Skills   from './components/Skills'
 import Projects from './components/Projects'
 import Contact  from './components/Contact'
 import Footer   from './components/Footer'
- 
+
 function App() {
   // useEffect: attach scroll-reveal to every .reveal element
   useEffect(() => {
@@ -26,9 +25,9 @@ function App() {
     els.forEach((el) => obs.observe(el))
     return () => obs.disconnect()
   }, [])
- 
+
   return (
-    <div className="bg-black min-h-screen text-white">
+    <div className="bg-white dark:bg-black min-h-screen text-gray-900 dark:text-white transition-colors duration-300">
       <Navbar />
       <main>
         <Home />
@@ -41,6 +40,5 @@ function App() {
     </div>
   )
 }
- 
+
 export default App
- 

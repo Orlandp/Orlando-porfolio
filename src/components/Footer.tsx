@@ -8,20 +8,20 @@ const SOCIALS = [
 ]
 
 export default function Footer() {
-  
+
   const [showTop, setShowTop] = useState<boolean>(false)
 
-  
+
   useEffect(() => {
     const fn = () => setShowTop(window.scrollY > 400)
     window.addEventListener('scroll', fn)
-    return () => window.removeEventListener('scroll', fn) 
-  }, []) 
+    return () => window.removeEventListener('scroll', fn)
+  }, [])
 
   return (
-    <footer className="bg-black border-t border-white/5 relative">
+    <footer className="bg-white dark:bg-black border-t border-black/5 dark:border-white/5 relative transition-colors duration-300">
 
-      
+
       {showTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -35,7 +35,7 @@ export default function Footer() {
       <div className="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-xs text-gray-600 tracking-wide">
           © {new Date().getFullYear()}{' '}
-          <span className="text-gray-500 font-semibold">Orlando</span>.
+          <span className="text-gray-700 dark:text-gray-500 font-semibold">Orlando</span>.
           {' '}Built with React · TypeScript · Tailwind.
         </p>
 
@@ -45,9 +45,9 @@ export default function Footer() {
               <a
                 href={href} target="_blank" rel="noreferrer"
                 aria-label={label}
-                className="text-gray-600 hover:text-red-400 transition-colors block"
+                className="text-gray-600 hover:text-red-500 dark:hover:text-red-400 transition-colors block"
               >
-                <svg className="w-4 h-4" role="presentation" aria-hidden="true">
+                <svg className="icon-fill w-4 h-4" role="presentation" aria-hidden="true">
                   <use href={`/icons.svg#${iconId}`} />
                 </svg>
               </a>
