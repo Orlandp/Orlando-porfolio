@@ -27,6 +27,13 @@ const ALL: Project[] = [
     featured:    true,
   },
   {
+    title:       'Eagles Portal (EEnovators)',
+    description: 'Energy monitoring platform for EEnovators — live power tracking, historical analysis, billing verification, and anomaly detection measured directly from meters on site.',
+    tags:        ['React', 'Energy Monitoring'],
+    liveUrl:     'https://eagles.eenovators.com',
+    featured:    true,
+  },
+  {
     title:       'Portfolio Site',
     description: 'React + TypeScript + Vite + Tailwind. Smooth scroll, active nav, typed component architecture.',
     tags:        ['React', 'TypeScript', 'Vite', 'Tailwind'],
@@ -53,14 +60,14 @@ export default function Projects() {
   return (
     <section id="projects" className="py-28 px-6 bg-white dark:bg-black transition-colors duration-300">
       <div className="max-w-5xl mx-auto">
-        <p className="reveal text-xs font-semibold uppercase tracking-[0.3em] text-red-500 mb-3">
+        <p className="reveal text-xs font-semibold uppercase tracking-[0.15em] text-red-500 mb-3">
           Work
         </p>
         <h2 className="reveal text-3xl md:text-4xl font-black text-gray-900 dark:text-white leading-tight mb-3">
           Things I've built
         </h2>
         <p className="reveal text-sm text-gray-500 max-w-md mb-10">
-          A selection of projects that show how I think, build, and ship.
+          A selection of projects that show how I think, build, and ship. Click a card to open it.
         </p>
 
         {/* filter buttons — clicking updates useState */}
@@ -85,45 +92,53 @@ export default function Projects() {
         </p>
 
         <div className="grid sm:grid-cols-2 gap-4">
-          {shown.map((p) => (
-            <article
-              key={p.title}
-              className={`reveal relative flex flex-col gap-4 p-6 rounded-xl border transition-all hover:-translate-y-0.5 ${
-                p.featured
-                  ? 'bg-red-50 dark:bg-red-950/20 border-red-500/25 hover:border-red-500/50'
-                  : 'bg-black/[0.02] dark:bg-white/[0.02] border-black/8 dark:border-white/8 hover:border-black/20 dark:hover:border-white/20'
-              }`}
-            >
-              {p.featured && (
-                <span className="absolute top-4 right-4 text-[10px] font-bold uppercase text-red-500 dark:text-red-400 border border-red-500/40 px-2 py-0.5 rounded-full">
-                  Featured
-                </span>
-              )}
-              <h3 className="text-gray-900 dark:text-white font-bold text-lg pr-20">{p.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed flex-1">{p.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {p.tags.map((tag) => (
-                  <span key={tag} className="text-[11px] text-gray-600 border border-black/10 dark:border-white/10 px-2 py-0.5 rounded">
-                    {tag}
+          {shown.map((p) => {
+            const primaryUrl = p.liveUrl ?? p.repoUrl
+            return (
+              <article
+                key={p.title}
+                onClick={() => primaryUrl && window.open(primaryUrl, '_blank', 'noreferrer')}
+                className={`reveal relative flex flex-col gap-4 p-6 rounded-xl border transition-all hover:-translate-y-0.5 ${
+                  primaryUrl ? 'cursor-pointer' : ''
+                } ${
+                  p.featured
+                    ? 'bg-red-50 dark:bg-red-950/20 border-red-500/25 hover:border-red-500/50'
+                    : 'bg-black/[0.02] dark:bg-white/[0.02] border-black/8 dark:border-white/8 hover:border-black/20 dark:hover:border-white/20'
+                }`}
+              >
+                {p.featured && (
+                  <span className="absolute top-4 right-4 text-[10px] font-bold uppercase text-red-500 dark:text-red-400 border border-red-500/40 px-2 py-0.5 rounded-full">
+                    Featured
                   </span>
-                ))}
-              </div>
-              <div className="flex gap-5 pt-1">
-                {p.repoUrl && (
-                  <a href={p.repoUrl} target="_blank" rel="noreferrer"
-                    className="text-xs text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">
-                    GitHub
-                  </a>
                 )}
-                {p.liveUrl && (
-                  <a href={p.liveUrl} target="_blank" rel="noreferrer"
-                    className="text-xs text-red-500 dark:text-red-400 hover:text-red-600 dark:hover:text-red-300 transition-colors">
-                    Live Demo
-                  </a>
-                )}
-              </div>
-            </article>
-          ))}
+                <h3 className="text-gray-900 dark:text-white font-bold text-lg pr-20">{p.title}</h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed flex-1">{p.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {p.tags.map((tag) => (
+                    <span key={tag} className="text-[11px] text-gray-600 border border-black/10 dark:border-white/10 px-2 py-0.5 rounded">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex gap-5 pt-1">
+                  {p.repoUrl && (
+                    <a href={p.repoUrl} target="_blank" rel="noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-xs text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">
+                      GitHub
+                    </a>
+                  )}
+                  {p.liveUrl && (
+                    <a href={p.liveUrl} target="_blank" rel="noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-xs text-red-500 dark:text-red-400 hover:text-red-600 dark:hover:text-red-300 transition-colors">
+                      Live Demo
+                    </a>
+                  )}
+                </div>
+              </article>
+            )
+          })}
         </div>
       </div>
     </section>

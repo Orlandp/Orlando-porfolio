@@ -53,7 +53,7 @@ export default function About() {
   return (
     <section id="about" ref={ref} className="py-28 px-6 bg-white dark:bg-black transition-colors duration-300">
       <div className="max-w-5xl mx-auto">
-        <p className="reveal text-xs font-semibold uppercase tracking-[0.3em] text-red-500 mb-3">
+        <p className="reveal text-xs font-semibold uppercase tracking-[0.15em] text-red-500 mb-3">
           About me
         </p>
         <h2 className="reveal text-3xl md:text-4xl font-black text-gray-900 dark:text-white leading-tight mb-16">

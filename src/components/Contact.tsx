@@ -59,7 +59,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-28 px-6 bg-gray-50 dark:bg-zinc-950 transition-colors duration-300">
       <div className="max-w-4xl mx-auto">
-        <p className="reveal text-xs font-semibold uppercase tracking-[0.3em] text-red-500 mb-3">
+        <p className="reveal text-xs font-semibold uppercase tracking-[0.15em] text-red-500 mb-3">
           Contact
         </p>
         <h2 className="reveal text-3xl md:text-4xl font-black text-gray-900 dark:text-white leading-tight mb-3">

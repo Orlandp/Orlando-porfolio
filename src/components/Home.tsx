@@ -17,7 +17,7 @@ export default function Home() {
 
             }, 500)
 
-        }, 2500)
+        }, 3200)
         return () => clearInterval(id)
     }, [])
 
@@ -46,15 +46,14 @@ export default function Home() {
       </div>
 
       <p
-        className="hero-enter text-xs font-semibold tracking-[0.3em] uppercase text-red-500 mb-3"
+        className="hero-enter text-xs font-semibold tracking-[0.15em] uppercase text-red-500 mb-4"
         style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.4s ease' }}
       >
         {ROLES[roleIndex]}
       </p>
 
-      <h1 className="hero-enter text-4xl md:text-6xl font-black text-gray-900 dark:text-white leading-none mb-5 tracking-tight">
-        Hi, I'm<br />
-        <span className="text-red-500">JAMES</span>
+      <h1 className="hero-enter text-4xl md:text-6xl font-black text-gray-900 dark:text-white leading-[1.05] mb-5 tracking-tight">
+        Hi, I'm <span className="text-red-500">James</span>
       </h1>
 
       <p className="hero-enter max-w-lg text-gray-600 dark:text-gray-400 leading-relaxed text-sm md:text-base mb-10">
